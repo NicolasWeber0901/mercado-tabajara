@@ -11,7 +11,9 @@ package tabajara.mercado.tabajara;
  */
 public class Sistema {
     public static void main(String[] args) {
-       Endereco e1 = new Endereco("Alexander Drude", "Centro", 89155000, 02);
+        //Classe temporária apenas para fins de teste antes das interfaces.
+        
+        Endereco e1 = new Endereco("Alexander Drude", "Centro", 89155000, 02);
        
         System.out.println(e1.toString());
     }
