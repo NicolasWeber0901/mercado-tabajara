@@ -22,12 +22,13 @@ public abstract class Pessoa {
     protected String usuario;
     protected String senha;
 
-    public Pessoa(int codigo, String nome, String cpf, String dataNascimento, int telefone, String usuario, String senha) {
+    public Pessoa(String nome, String cpf, String dataNascimento, int telefone, Endereco endereco, String usuario, String senha) {
         this.codigo = geraCodigo(geradorCodigo);
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
         this.telefone = telefone;
+        this.endereco = endereco;
         this.usuario = usuario;
         this.senha = senha;
     }
