@@ -18,7 +18,7 @@ public class Estoque {
     private Endereco endereco;
     private Map<Integer, Produto> produtos;
 
-    public Estoque(String nome, Endereco endereco, Map<Integer, Produto> produtos) {
+    public Estoque(String nome, Endereco endereco) {
         this.nome = nome;
         this.endereco = endereco;
         this.produtos = new HashMap<>();
@@ -48,7 +48,30 @@ public class Estoque {
         this.produtos = produtos;
     }
 
-    //Inserir os métodos de listagem (listar todos, listar por código e listar por nome)
+    public void addProduto(int cod, Produto produto){
+        this.produtos.put(cod, produto);
+    }
+    
+    public void listaProduto(){
+          for (int cod : this.produtos.keySet()){
+              System.out.println("Codigo: " + cod + " " + produtos.get(cod));
+          }
+    }
+    
+    public void listaProduto(int cod){
+        System.out.println(produtos.get(cod));
+    }
+    
+    public void listaProduto(String nome){
+        for(int cod : produtos.keySet()){
+            Produto p = produtos.get(cod);
+            if(p.getNome().equals(nome)){
+                System.out.println(p);
+            }
+        }
+    }
+    
+    //Inserir método para pesquisar por categoria.
     
     @Override
     public String toString() {
