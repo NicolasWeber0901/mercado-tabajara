@@ -12,7 +12,7 @@ package tabajara.mercado.tabajara;
 public class Produto {
 
     private static int geradorCodigo = 0;
-    
+
     private int codigo;
     private String nome;
     private double valor;
@@ -78,9 +78,9 @@ public class Produto {
     }
 
     public String toString() {
-        return "Produto{" + ", nome=" + nome + 
-                ", valor=" + valor + ", descricao=" + descricao + 
-                ", categoria=" + categoria + ", qtd=" + qtd + '}';
+        return "nome=" + nome
+                + ", valor=" + valor + ", descricao=" + descricao
+                + ", categoria=" + categoria + ", qtd=" + qtd + '}';
     }
 
 }
