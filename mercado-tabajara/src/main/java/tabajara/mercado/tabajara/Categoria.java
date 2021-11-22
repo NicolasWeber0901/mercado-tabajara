@@ -35,7 +35,7 @@ public class Categoria {
     }
 
     public String toString() {
-        return "nome = " + nome + ", descricao: " + descricao + '}';
+        return nome + "; " + descricao;
     }
     
 }
