@@ -8,6 +8,7 @@ package View;
 import Model.Produto;
 import Model.Categoria;
 import Model.Mercado;
+import view.TelaCadastroCategoria;
 
 /**
  *
@@ -35,7 +36,7 @@ public class SistemaFuncionarioView extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         miListarProdutos = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        miCadCategoria = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -57,8 +58,13 @@ public class SistemaFuncionarioView extends javax.swing.JFrame {
         jMenuItem2.setText("Cadastrar produto");
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setText("Cadastrar categoria");
-        jMenu1.add(jMenuItem3);
+        miCadCategoria.setText("Cadastrar categoria");
+        miCadCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miCadCategoriaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(miCadCategoria);
 
         jMenuBar1.add(jMenu1);
 
@@ -97,6 +103,11 @@ public class SistemaFuncionarioView extends javax.swing.JFrame {
         ListarProdutosView listarProdutos = new ListarProdutosView();
         listarProdutos.setVisible(true);
     }//GEN-LAST:event_miListarProdutosActionPerformed
+
+    private void miCadCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCadCategoriaActionPerformed
+        TelaCadastroCategoria telaCadCategoria = new TelaCadastroCategoria();
+        telaCadCategoria.setVisible(true);
+    }//GEN-LAST:event_miCadCategoriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,9 +165,9 @@ public class SistemaFuncionarioView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem miCadCategoria;
     private javax.swing.JMenuItem miListarProdutos;
     // End of variables declaration//GEN-END:variables
 }
