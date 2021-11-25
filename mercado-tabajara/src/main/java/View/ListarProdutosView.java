@@ -10,6 +10,7 @@ import Model.Mercado;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -18,12 +19,18 @@ import java.util.Map;
 public class ListarProdutosView extends javax.swing.JFrame {
 
     private TableModelProdutos tableModelProdutos;
-    
+    private TableRowSorter myTableSorter;
+            
     public ListarProdutosView() {
         Map <Integer, Produto> produtosMap = Mercado.getMercado().getEstoque().getProdutos();
         List<Produto> produtos = new ArrayList<Produto>(produtosMap.values());
         this.tableModelProdutos = new TableModelProdutos(produtos);
+        
         initComponents();
+        
+        myTableSorter = new TableRowSorter(this.tableModelProdutos);
+        jTable1.setRowSorter(myTableSorter);
+        
     }
 
     /**
@@ -40,7 +47,7 @@ public class ListarProdutosView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         btnFiltrarProduto = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        tfPesquisar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Listagem Produtos");
@@ -52,7 +59,12 @@ public class ListarProdutosView extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        btnFiltrarProduto.setText("Filtrar");
+        btnFiltrarProduto.setText("Pesquisar");
+        btnFiltrarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFiltrarProdutoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,10 +80,10 @@ public class ListarProdutosView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnFiltrarProduto)
-                .addContainerGap(484, Short.MAX_VALUE))
+                .addContainerGap(459, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -81,7 +93,7 @@ public class ListarProdutosView extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnFiltrarProduto)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43))
@@ -90,6 +102,11 @@ public class ListarProdutosView extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnFiltrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarProdutoActionPerformed
+        String searchText = tfPesquisar.getText();
+        myTableSorter.setRowFilter(new MyRowFilter(searchText));
+    }//GEN-LAST:event_btnFiltrarProdutoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -102,6 +119,6 @@ public class ListarProdutosView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField tfPesquisar;
     // End of variables declaration//GEN-END:variables
 }
