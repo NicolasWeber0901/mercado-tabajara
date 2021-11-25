@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -101,5 +102,5 @@ public class TableModelProdutos extends AbstractTableModel {
             }
         }
     }
-    
+ 
 }
