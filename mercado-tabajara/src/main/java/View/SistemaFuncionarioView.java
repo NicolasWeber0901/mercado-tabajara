@@ -7,6 +7,9 @@ package View;
 
 import Model.Produto;
 import Model.Categoria;
+import Model.Cliente;
+import Model.Endereco;
+import Model.Funcionario;
 import Model.Mercado;
 import view.TelaCadastroCategoria;
 
@@ -112,52 +115,8 @@ public class SistemaFuncionarioView extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SistemaFuncionarioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SistemaFuncionarioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SistemaFuncionarioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SistemaFuncionarioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SistemaFuncionarioView().setVisible(true);
-            }
-        });
-        
-        Mercado mercado = Mercado.getMercado();
-        
-        Categoria c1 = new Categoria("Alimento", "Pereciveis");
-        Categoria c2 = new Categoria("Higiene", "Higiene pessoal");
-        Categoria c3 = new Categoria ("Limpeza", "Produtos de limepza");
-        
-        Produto p1 = new Produto("Arroz", 10.0, "Saco de 1KG", c1, 10);
-        Produto p2 = new Produto("Desodorante", 10.0, "Rexona", c2, 8);
-        Produto p3 = new Produto("Sabão", 10.0, "OMO 1KG", c3, 13);
-        
-        mercado.getEstoque().addProduto(p1.getCodigo(), p1);
-        mercado.getEstoque().addProduto(p2.getCodigo(), p2);
-        mercado.getEstoque().addProduto(p3.getCodigo(), p3);
-    }
+    
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;

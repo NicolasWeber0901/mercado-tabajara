@@ -20,6 +20,7 @@ public class MyRowFilter extends RowFilter{
     }
 
     public MyRowFilter() {
+        
     }
     
     @Override
