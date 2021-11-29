@@ -102,5 +102,10 @@ public class TableModelProdutos extends AbstractTableModel {
             }
         }
     }
+    
+    public void removeRow(int linha) {
+        this.produtos.remove(linha);
+        this.fireTableRowsDeleted(linha, linha);
+    }
  
 }
