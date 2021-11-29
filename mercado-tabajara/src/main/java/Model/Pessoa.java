@@ -9,7 +9,7 @@ package Model;
  *
  * @author Nicolas
  */
-public abstract class Pessoa {
+public abstract class Pessoa implements VerificaLogin{
 
     protected int geradorCodigo = 0;
 
@@ -81,6 +81,14 @@ public abstract class Pessoa {
         return ++this.geradorCodigo;
     }
 
+    @Override
+    public boolean validaLogin(String usuario, String senha) {
+        if(usuario.equals(this.usuario) && senha.equals(this.senha)){
+            return true;
+        }
+        return false;
+    }
+    
     @Override
     public String toString() {
         return "Pessoa{" + "codigo=" + codigo + ", nome=" + nome
