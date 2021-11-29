@@ -180,13 +180,13 @@ public class TelaLogin extends javax.swing.JFrame {
         
         Endereco e1 = new Endereco("Rua dos bobos", "Centro", 89140000, 0); 
         
-        Funcionario f1 = new Funcionario("Repositor de estoque", "Jurandir", 
+        Funcionario f1 = new Funcionario("Repositor de estoque", "jurandir", 
                 "026.130.490-90", "01/10/1999", 999999999, e1, "jurandir", 
-                "jujulindo123");
+                "123");
         
         Funcionario f2 = new Funcionario("Gerente", "Fernando", 
-                "025.142.560-75", "27/11/1980", 999999999, e1, "fernandoGerente", 
-                "fernandinho1980");
+                "025.142.560-75", "27/11/1980", 999999999, e1, "fernando", 
+                "132");
         
         Funcionario f3 = new Funcionario("Caixa", "Amanda", 
                 "087.232.780-82", "30/12/2001", 999999999, e1, "amandaCaixa", 
