@@ -22,6 +22,7 @@ public class Mercado {
     private Endereco endereco;
     private Estoque estoque;
     private List<Cliente> clientes;
+    private List<Funcionario> funcionarios;
     private List<Categoria> categorias;
 
     //Adicionar a lista de pedidos.
@@ -33,6 +34,7 @@ public class Mercado {
         this.estoque = estoque;
         this.categorias = new ArrayList<>();
         this.clientes = new ArrayList<>();
+        this.funcionarios = new ArrayList<>();
     }
 
     public String getNome() {
@@ -77,6 +79,10 @@ public class Mercado {
 
     public List<Cliente> getClientes() {
         return clientes;
+    }
+    
+    public List<Funcionario> getFuncionarios() {
+        return funcionarios;
     }
 
     public List<Categoria> getCategorias() {
