@@ -3,9 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package View;
 
-package view;
-
+import Model.Categoria;
+import Model.Mercado;
+import Model.Produto;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,11 +17,16 @@ import javax.swing.JOptionPane;
  */
 public class TelaCadastroProduto extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaCadastroPessoa
-     */
+    private List<Categoria> categorias;
+
     public TelaCadastroProduto() {
+
+        this.categorias = Mercado.getMercado().getCategorias();
+
         initComponents();
+        for (Categoria cat : this.categorias) {
+            cbCategoria.addItem(cat);
+        }
     }
 
     /**
@@ -32,26 +40,24 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
 
         jPanel4 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        tfNome = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         tfNome1 = new javax.swing.JTextField();
-        tfNome2 = new javax.swing.JTextField();
+        tfValor = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        taDesc = new javax.swing.JTextArea();
         jLabel14 = new javax.swing.JLabel();
-        tfNome3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        tfQtd = new javax.swing.JTextField();
+        btCadastrarCat = new javax.swing.JButton();
+        cbCategoria = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro Produto");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Produtos"));
-
-        jLabel1.setText("Código");
 
         jLabel3.setText("Nome");
 
@@ -59,46 +65,50 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
 
         jLabel8.setText("Descrição");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        taDesc.setColumns(20);
+        taDesc.setRows(5);
+        jScrollPane1.setViewportView(taDesc);
 
         jLabel14.setText("Quantidade");
 
-        jButton1.setText("Cadastrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btCadastrarCat.setText("Cadastrar");
+        btCadastrarCat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btCadastrarCatActionPerformed(evt);
             }
         });
+
+        jLabel1.setText("Categoria");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addComponent(btCadastrarCat)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfNome2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel8))
-                    .addComponent(jLabel14)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(tfNome, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(tfNome1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1)
-                    .addComponent(jLabel3)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfNome3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                    .addComponent(cbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel14)
+                            .addComponent(tfNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(tfValor, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addGap(1, 1, 1)
+                                    .addComponent(jLabel8)))
+                            .addComponent(tfQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)))
                 .addGap(190, 190, 190))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(114, 114, 114)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,18 +118,14 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
                         .addGap(114, 114, 114)
                         .addComponent(jLabel4))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addContainerGap()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfNome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfNome2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -127,10 +133,14 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addComponent(jLabel14)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfNome3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(53, 53, 53))
+                .addComponent(tfQtd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(btCadastrarCat)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -143,7 +153,9 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel1.getAccessibleContext().setAccessibleName("Cadastro Cliente");
@@ -152,32 +164,49 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 22, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    private void btCadastrarCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarCatActionPerformed
+        String nome = tfNome1.getText();
+        String desc = taDesc.getText();
+        double valor = Integer.parseInt(tfValor.getText());
+        int qtd = Integer.parseInt(tfQtd.getText());
+        Categoria cat = cbCategoria.getItemAt(cbCategoria.getSelectedIndex());
+
+        Produto p1 = new Produto(nome, valor, desc, cat, qtd);
         
-        //JOptionPane.showMessageDialog(null,);
+        /* p1.getCodigo() passado após a criação do produto (método gerando 
+        código automático) como chave para o Map. Após isso, passado o objeto
+        em si como valor. 
         
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+        Map = <Chave, valor>
+        */
+        Mercado.getMercado().getEstoque().addProduto(p1.getCodigo(), p1);
+
+        JOptionPane.showMessageDialog(this, "Salvo com sucesso!");
+        this.dispose();
+    }//GEN-LAST:event_btCadastrarCatActionPerformed
 
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btCadastrarCat;
+    private javax.swing.JComboBox<Categoria> cbCategoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel3;
@@ -187,10 +216,9 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField tfNome;
+    private javax.swing.JTextArea taDesc;
     private javax.swing.JTextField tfNome1;
-    private javax.swing.JTextField tfNome2;
-    private javax.swing.JTextField tfNome3;
+    private javax.swing.JTextField tfQtd;
+    private javax.swing.JTextField tfValor;
     // End of variables declaration//GEN-END:variables
 }
