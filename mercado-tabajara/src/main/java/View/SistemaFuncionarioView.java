@@ -11,7 +11,6 @@ import Model.Cliente;
 import Model.Endereco;
 import Model.Funcionario;
 import Model.Mercado;
-import view.TelaCadastroCategoria;
 
 /**
  *
@@ -59,6 +58,11 @@ public class SistemaFuncionarioView extends javax.swing.JFrame {
         jMenu1.add(miListarProdutos);
 
         jMenuItem2.setText("Cadastrar produto");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         miCadCategoria.setText("Cadastrar categoria");
@@ -112,10 +116,86 @@ public class SistemaFuncionarioView extends javax.swing.JFrame {
         telaCadCategoria.setVisible(true);
     }//GEN-LAST:event_miCadCategoriaActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        TelaCadastroProduto telaCadProduto = new TelaCadastroProduto();
+        telaCadProduto.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new SistemaFuncionarioView().setVisible(true);
+            }
+        });
+        
+        Mercado mercado = Mercado.getMercado();
+        
+        Categoria c1 = new Categoria("Alimento", "Pereciveis");
+        Categoria c2 = new Categoria("Higiene", "Higiene pessoal");
+        Categoria c3 = new Categoria ("Limpeza", "Produtos de limepza");
+        
+        Produto p1 = new Produto("Arroz", 10.0, "Saco de 1KG", c1, 10);
+        Produto p2 = new Produto("Desodorante", 10.0, "Rexona", c2, 8);
+        Produto p3 = new Produto("Sabão", 10.0, "OMO 1KG", c3, 13);
+        
+        mercado.getEstoque().addProduto(p1.getCodigo(), p1);
+        mercado.getEstoque().addProduto(p2.getCodigo(), p2);
+        mercado.getEstoque().addProduto(p3.getCodigo(), p3);
+        
+        Endereco e1 = new Endereco("Rua dos bobos", "Centro", 89140000, 0); 
+        
+        Funcionario f1 = new Funcionario("Repositor de estoque", "jurandir", 
+                "026.130.490-90", "01/10/1999", 999999999, e1, "jurandir", 
+                "123");
+        
+        Funcionario f2 = new Funcionario("Gerente", "Fernando", 
+                "025.142.560-75", "27/11/1980", 999999999, e1, "fernando", 
+                "132");
+        
+        Funcionario f3 = new Funcionario("Caixa", "Amanda", 
+                "087.232.780-82", "30/12/2001", 999999999, e1, "amandaCaixa", 
+                "301201");
+        
+        Cliente cl1 = new Cliente("Jaspion", "087.232.780-82", "13/10/1970", 
+                999999999, e1, "jaspion", "jaspion132");
+        
+        Cliente cl2 = new Cliente("Donald", "087.232.780-82", "13/10/1960", 
+                999999999, e1, "donaldinho", "patopato2030");
+        
+        mercado.getFuncionarios().add(f1);
+        mercado.getFuncionarios().add(f2);
+        mercado.getFuncionarios().add(f3);
+        
+        mercado.getClientes().add(cl1);
+        mercado.getClientes().add(cl2);
+    }
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
