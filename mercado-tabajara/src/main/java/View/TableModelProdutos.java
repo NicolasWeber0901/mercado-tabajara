@@ -6,11 +6,8 @@
 package View;
 
 import Model.Produto;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *
