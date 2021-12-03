@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class TelaCadastroCategoria extends javax.swing.JFrame {
 
     /**
-     * Creates new form TelaCadastroPessoa
+     * Creates new form TelaCadastroCliente
      */
     public TelaCadastroCategoria() {
         initComponents();
