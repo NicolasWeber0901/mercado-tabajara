@@ -40,6 +40,7 @@ public class SistemaFuncionarioView extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         miCadCategoria = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        miCadCliente = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -77,7 +78,20 @@ public class SistemaFuncionarioView extends javax.swing.JFrame {
 
         jMenu2.setText("Cliente");
 
+        miCadCliente.setText("Cadastrar Cliente");
+        miCadCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miCadClienteActionPerformed(evt);
+            }
+        });
+        jMenu2.add(miCadCliente);
+
         jMenuItem4.setText("Listar clientes");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuBar1.add(jMenu2);
@@ -107,7 +121,7 @@ public class SistemaFuncionarioView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void miListarProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miListarProdutosActionPerformed
-        ListarProdutosView listarProdutos = new ListarProdutosView();
+        TelaListagemProdutos listarProdutos = new TelaListagemProdutos();
         listarProdutos.setVisible(true);
     }//GEN-LAST:event_miListarProdutosActionPerformed
 
@@ -120,6 +134,16 @@ public class SistemaFuncionarioView extends javax.swing.JFrame {
         TelaCadastroProduto telaCadProduto = new TelaCadastroProduto();
         telaCadProduto.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void miCadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCadClienteActionPerformed
+        TelaCadastroCliente telaCadCliente = new TelaCadastroCliente();
+        telaCadCliente.setVisible(true);
+    }//GEN-LAST:event_miCadClienteActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        TelaListagemCliente telaListCliente = new TelaListagemCliente();
+        telaListCliente.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,13 +162,13 @@ public class SistemaFuncionarioView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SistemaFuncionarioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SistemaFuncionarioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SistemaFuncionarioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SistemaFuncionarioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -169,32 +193,8 @@ public class SistemaFuncionarioView extends javax.swing.JFrame {
         mercado.getEstoque().addProduto(p2.getCodigo(), p2);
         mercado.getEstoque().addProduto(p3.getCodigo(), p3);
         
-        Endereco e1 = new Endereco("Rua dos bobos", "Centro", 89140000, 0); 
+        Endereco e1 = new Endereco("Rua dos bobos", "Centro", "89140-000", 0); 
         
-        Funcionario f1 = new Funcionario("Repositor de estoque", "jurandir", 
-                "026.130.490-90", "01/10/1999", 999999999, e1, "jurandir", 
-                "123");
-        
-        Funcionario f2 = new Funcionario("Gerente", "Fernando", 
-                "025.142.560-75", "27/11/1980", 999999999, e1, "fernando", 
-                "132");
-        
-        Funcionario f3 = new Funcionario("Caixa", "Amanda", 
-                "087.232.780-82", "30/12/2001", 999999999, e1, "amandaCaixa", 
-                "301201");
-        
-        Cliente cl1 = new Cliente("Jaspion", "087.232.780-82", "13/10/1970", 
-                999999999, e1, "jaspion", "jaspion132");
-        
-        Cliente cl2 = new Cliente("Donald", "087.232.780-82", "13/10/1960", 
-                999999999, e1, "donaldinho", "patopato2030");
-        
-        mercado.getFuncionarios().add(f1);
-        mercado.getFuncionarios().add(f2);
-        mercado.getFuncionarios().add(f3);
-        
-        mercado.getClientes().add(cl1);
-        mercado.getClientes().add(cl2);
     }
    
 
@@ -207,6 +207,7 @@ public class SistemaFuncionarioView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem miCadCategoria;
+    private javax.swing.JMenuItem miCadCliente;
     private javax.swing.JMenuItem miListarProdutos;
     // End of variables declaration//GEN-END:variables
 }
