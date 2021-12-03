@@ -121,7 +121,7 @@ public class Mercado {
     
     public static Mercado getMercado() {
         if (Mercado.mercado == null) {
-            Endereco e1 = new Endereco("Alberto Koglin", "Centro", 89155000, 123);
+            Endereco e1 = new Endereco("Alberto Koglin", "Centro", "89155000", 123);
             Estoque estoque = new Estoque("EStoque Matriz", e1);
             Mercado.mercado = new Mercado("Tabajara", "40028922", "33.666.330/0001-70",
                     e1, estoque);
