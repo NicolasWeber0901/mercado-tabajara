@@ -12,7 +12,7 @@ package Model;
 public class Funcionario extends Pessoa{
     private String funcao;
 
-    public Funcionario(String funcao, String nome, String cpf, String dataNascimento, int telefone, Endereco endereco, String usuario, String senha) {
+    public Funcionario(String funcao, String nome, String cpf, String dataNascimento, String telefone, Endereco endereco, String usuario, String senha) {
         super(nome, cpf, dataNascimento, telefone, endereco, usuario, senha);
         this.funcao = funcao;
     }
