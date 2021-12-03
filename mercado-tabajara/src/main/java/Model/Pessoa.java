@@ -17,12 +17,12 @@ public abstract class Pessoa implements VerificaLogin{
     protected String nome;
     protected String cpf;
     protected String dataNascimento;
-    protected int telefone;
+    protected String telefone;
     protected Endereco endereco;
     protected String usuario;
     protected String senha;
 
-    public Pessoa(String nome, String cpf, String dataNascimento, int telefone, Endereco endereco, String usuario, String senha) {
+    public Pessoa(String nome, String cpf, String dataNascimento, String telefone, Endereco endereco, String usuario, String senha) {
         this.codigo = geraCodigo(geradorCodigo);
         this.nome = nome;
         this.cpf = cpf;
@@ -57,11 +57,11 @@ public abstract class Pessoa implements VerificaLogin{
         this.dataNascimento = dataNascimento;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
