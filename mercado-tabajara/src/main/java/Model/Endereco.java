@@ -12,11 +12,11 @@ package Model;
 public class Endereco {
     private String rua;
     private String bairro;
-    private int cep;
+    private String cep;
     private int numero;
     private String cidade;
 
-    public Endereco(String rua, String bairro, int cep, int numero) {
+    public Endereco(String rua, String bairro, String cep, int numero) {
         this.rua = rua;
         this.bairro = bairro;
         this.cep = cep;
@@ -40,11 +40,11 @@ public class Endereco {
         this.bairro = bairro;
     }
 
-    public int getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(int cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 
@@ -64,30 +64,30 @@ public class Endereco {
         this.cidade = cidade;
     }
     
-    public String cidadeCep(int cep){
+    public String cidadeCep(String cep){
         String cidade = "";
         switch(cep){
-            case 89155000: {
+            case "89155-000": {
                 cidade = "Dona Emma";
                 break;
             }
             
-            case 89140000: {
+            case "89140-000": {
                 cidade = "Ibirama";
                 break;
             }
             
-            case 89150000: {
+            case "89150-000": {
                 cidade = "Presidente Getúlio";
                 break;
             }
             
-            case 89148000: {
+            case "89148-000": {
                 cidade = "Vitor Meireles";
                 break;
             }
             
-            case 891157000: {
+            case "891157-000": {
                 cidade = "Witmarsum";
                 break;
             }
