@@ -14,8 +14,15 @@ import java.util.List;
  */
 public class Mercado {
 
+    /*
+    Criação da variável estática. Criada dessa forma para manter a mesma 
+    instância durante toda a execução do programa. Variáveis estáticas 
+    pertencem a classe e não ao objeto. Por isso quando declaradas, devem ser
+    utilizadas através da classe.
+     */
     private static Mercado mercado;
-
+    
+    //Modificadores de escopo
     private String nome;
     private String telefone;
     private String cnpj;
@@ -115,10 +122,16 @@ public class Mercado {
     
     @Override
     public String toString() {
-        return "Mercado{" + "nome=" + nome + ", telefone=" + telefone + ", cnpj=" + cnpj + ", endereco=" + endereco + ", estoque=" + estoque + '}';
+        return "Mercado{" + "nome=" + nome + ", telefone=" + telefone + 
+                ", cnpj=" + cnpj + ", endereco=" + endereco + ", estoque=" 
+                + estoque + '}';
     }
 
     
+    /*Na primeira vez que o método é chamado (na tela SistemaFuncionarioView),
+     ele cria o objeto mercado padrão e a partir dele, fazemos uso do restando
+    dos métodos. Quando ele já está criado, apenas retorna o objeto.
+    */
     public static Mercado getMercado() {
         if (Mercado.mercado == null) {
             Endereco e1 = new Endereco("Alberto Koglin", "Centro", "89155000", 123);
