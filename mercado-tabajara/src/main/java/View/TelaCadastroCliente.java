@@ -304,43 +304,13 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         */
         try {
 
-            if (nome.isEmpty()) {
+            if (nome.isEmpty() || cpf.isEmpty() || dataNasc.isEmpty() 
+                    || telefone.isEmpty() || rua.isEmpty() || bairro.isEmpty() 
+                    || cep.isEmpty() || usuario.isEmpty() || senha.isEmpty()) {
 
                 throw new IllegalArgumentException("Campo vazio!");
 
-            } else if (cpf.isEmpty()) {
-                
-                throw new IllegalArgumentException("Campo vazio!");
-                
-            } else if (dataNasc.isEmpty()) {
-                
-                throw new IllegalArgumentException("Campo vazio!");
-                
-            } else if (telefone.isEmpty()) {
-                
-                throw new IllegalArgumentException("Campo vazio!");
-                
-            } else if (rua.isEmpty()) {
-                
-                throw new IllegalArgumentException("Campo vazio!");
-                
-            } else if (bairro.isEmpty()) {
-                
-                throw new IllegalArgumentException("Campo vazio!");
-                
-            } else if (cep.isEmpty()) {
-                
-                throw new IllegalArgumentException("Campo vazio!");
-                
-            }else if (usuario.isEmpty()) {
-                
-                throw new IllegalArgumentException("Campo vazio!");
-                
-            }else if (senha.isEmpty()) {
-                
-                throw new IllegalArgumentException("Campo vazio!");
-                
-            }
+            } 
 
             Endereco e = new Endereco(rua, bairro, cep, num);
             Cliente cl = new Cliente(nome, cpf, dataNasc, telefone, e, usuario, senha);
@@ -354,7 +324,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
 
         } catch (IllegalArgumentException e) {
             
-            JOptionPane.showMessageDialog(this, "Preencha todos os campos");
+            JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
             
         }
     }//GEN-LAST:event_btCadastrarActionPerformed
