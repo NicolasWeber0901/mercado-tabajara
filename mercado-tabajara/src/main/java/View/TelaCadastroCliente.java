@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package View;
 
 import Model.Cliente;
@@ -282,35 +281,87 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
-        
+
         //Dados da classe Endereço
         String rua = tfRua.getText();
         String bairro = tfBairro.getText();
         String cep = tfCep.getText();
         int num = Integer.parseInt(tfNumero.getText());
-        
-       //Dados do cliente
-       String nome = tfNome.getText();
-       String cpf = tfCpf.getText();
-       String dataNasc = tfDataNascimento.getText();
-       String telefone = tfTelefone.getText();
-       
-       String usuario = tfUsuario.getText();
-       String senha = pfSenha.getText();
-       
-       Endereco e = new Endereco(rua, bairro, cep, num);
-       Cliente cl = new Cliente(nome, cpf, dataNasc, telefone, e, usuario, senha);
-       
-       Mercado.getMercado().getClientes().add(cl);
-       
-       JOptionPane.showMessageDialog(this, "Salvo com sucesso!");
-       this.dispose();
+
+        //Dados do cliente
+        String nome = tfNome.getText();
+        String cpf = tfCpf.getText();
+        String dataNasc = tfDataNascimento.getText();
+        String telefone = tfTelefone.getText();
+
+        String usuario = tfUsuario.getText();
+        String senha = pfSenha.getText();
+
+        /*
+        IllegalArgumentException é uma medida contra bad inputs, impedindo
+        que eles sejam passados para o restando do programa que irá utiliza-los
+        de fato. Por exemplo, construtor do cliente.
+        */
+        try {
+
+            if (nome.isEmpty()) {
+
+                throw new IllegalArgumentException("Campo vazio!");
+
+            } else if (cpf.isEmpty()) {
+                
+                throw new IllegalArgumentException("Campo vazio!");
+                
+            } else if (dataNasc.isEmpty()) {
+                
+                throw new IllegalArgumentException("Campo vazio!");
+                
+            } else if (telefone.isEmpty()) {
+                
+                throw new IllegalArgumentException("Campo vazio!");
+                
+            } else if (rua.isEmpty()) {
+                
+                throw new IllegalArgumentException("Campo vazio!");
+                
+            } else if (bairro.isEmpty()) {
+                
+                throw new IllegalArgumentException("Campo vazio!");
+                
+            } else if (cep.isEmpty()) {
+                
+                throw new IllegalArgumentException("Campo vazio!");
+                
+            }else if (usuario.isEmpty()) {
+                
+                throw new IllegalArgumentException("Campo vazio!");
+                
+            }else if (senha.isEmpty()) {
+                
+                throw new IllegalArgumentException("Campo vazio!");
+                
+            }
+
+            Endereco e = new Endereco(rua, bairro, cep, num);
+            Cliente cl = new Cliente(nome, cpf, dataNasc, telefone, e, usuario, senha);
+
+            Mercado.getMercado().getClientes().add(cl);
+            
+            System.out.println( Mercado.getMercado().getClientes());
+            
+            JOptionPane.showMessageDialog(this, "Salvo com sucesso!");
+            this.dispose();
+
+        } catch (IllegalArgumentException e) {
+            
+            JOptionPane.showMessageDialog(this, "Preencha todos os campos");
+            
+        }
     }//GEN-LAST:event_btCadastrarActionPerformed
 
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCadastrar;
