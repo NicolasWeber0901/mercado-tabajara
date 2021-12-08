@@ -47,7 +47,7 @@ public class TelaListagemCliente extends javax.swing.JFrame {
         cbFiltro = new javax.swing.JComboBox<>();
         btnFiltrarProduto = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btExcluir.setText("Excluir");
         btExcluir.addActionListener(new java.awt.event.ActionListener() {
