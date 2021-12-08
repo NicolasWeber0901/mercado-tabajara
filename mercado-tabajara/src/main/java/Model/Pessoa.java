@@ -13,6 +13,7 @@ public abstract class Pessoa implements VerificaLogin{
 
     protected int geradorCodigo = 0;
 
+    //Modificadores de acesso
     protected int codigo;
     protected String nome;
     protected String cpf;
