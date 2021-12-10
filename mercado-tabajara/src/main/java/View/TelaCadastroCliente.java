@@ -84,8 +84,6 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        tfTelefone.setText("( )     -");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -283,10 +281,18 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
 
         //Dados da classe Endereço
+        int num;
         String rua = tfRua.getText();
         String bairro = tfBairro.getText();
         String cep = tfCep.getText();
-        int num = Integer.parseInt(tfNumero.getText());
+        
+        //Verificação para ter certeza da conversão para int
+        if (tfNumero.getText().equals("")){
+            num = 0;
+        } else {
+            num = Integer.parseInt(tfNumero.getText());
+        }
+        
 
         //Dados do cliente
         String nome = tfNome.getText();
@@ -306,7 +312,8 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
 
             if (nome.isEmpty() || cpf.isEmpty() || dataNasc.isEmpty() 
                     || telefone.isEmpty() || rua.isEmpty() || bairro.isEmpty() 
-                    || cep.isEmpty() || usuario.isEmpty() || senha.isEmpty()) {
+                    || cep.isEmpty() || usuario.isEmpty() || senha.isEmpty()
+                    || num == 0) {
 
                 throw new IllegalArgumentException("Campo vazio!");
 

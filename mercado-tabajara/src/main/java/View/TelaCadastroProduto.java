@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 public class TelaCadastroProduto extends javax.swing.JFrame {
 
     public TelaCadastroProduto() {
-        
+
         initComponents();
         for (Categoria cat : Mercado.getMercado().getCategorias()) {
             cbCategoria.addItem(cat);
@@ -177,24 +177,54 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCadastrarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarProdActionPerformed
+        
+        double valor;
+        int qtd;
+        
         String nome = tfNome1.getText();
         String desc = taDesc.getText();
-        double valor = Integer.parseInt(tfValor.getText());
-        int qtd = Integer.parseInt(tfQtd.getText());
+        
+        if(tfValor.getText().equals("")){
+            valor = 0;
+        } else {
+            valor = Integer.parseInt(tfValor.getText());
+        }
+        
+        if(tfQtd.getText().equals("")){
+            qtd = 0;
+        } else {
+            qtd = Integer.parseInt(tfQtd.getText());
+        }
+
         Categoria cat = cbCategoria.getItemAt(cbCategoria.getSelectedIndex());
 
-        Produto p1 = new Produto(nome, valor, desc, cat, qtd);
+        try {
 
-        /* p1.getCodigo() passado após a criação do produto (método gerando 
-        código automático) como chave para o Map. Após isso, passado o objeto
-        em si como valor. 
+            if (nome.isEmpty() || desc.isEmpty() || valor == 0 || qtd == 0) {
+
+                throw new IllegalArgumentException("Campo vazio!");
+
+            }
+
+            Produto p1 = new Produto(nome, valor, desc, cat, qtd);
+
+            /* p1.getCodigo() passado após a criação do produto (método gerando 
+            código automático) como chave para o Map. Após isso, passado o objeto
+            em si como valor. 
         
-        Map = <chave, valor>
-         */
-        Mercado.getMercado().getEstoque().addProduto(p1.getCodigo(), p1);
+            Map = <chave, valor>
+             */
+            Mercado.getMercado().getEstoque().addProduto(p1.getCodigo(), p1);
 
-        JOptionPane.showMessageDialog(this, "Salvo com sucesso!");
-        this.dispose();
+            JOptionPane.showMessageDialog(this, "Salvo com sucesso!");
+            this.dispose();
+
+        } catch (IllegalArgumentException e) {
+
+            JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
+
+        }
+
     }//GEN-LAST:event_btCadastrarProdActionPerformed
 
     /**

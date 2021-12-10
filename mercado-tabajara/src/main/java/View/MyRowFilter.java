@@ -11,7 +11,7 @@ import javax.swing.RowFilter;
  *
  * @author Nicolas
  */
-public class MyRowFilter extends RowFilter{
+public class MyRowFilter extends RowFilter {
 
     private String searchText;
 
@@ -20,12 +20,23 @@ public class MyRowFilter extends RowFilter{
     }
 
     public MyRowFilter() {
-        
+
     }
-    
+
+    /*
+    Cada Entry corresponte a uma linha da tabela, e usando o true ou false, 
+    você determina se essa linha vai ser mostrada ou não.
+     */
     @Override
     public boolean include(Entry entry) {
-       return entry.getStringValue(0).indexOf(searchText) >= 0;
+        /*
+        getStringValue retorna o texto daquela linha e o número corresponde 
+        a coluna. O indexOf vai comparar se o texto digitado também aparece
+        dentro de um certo texto, se sim, ele retorna um número maios ou igual 
+        a 0, para indicar a localização do texto.
+         */
+        return entry.getStringValue(0).indexOf(searchText) >= 0;
+
     }
-    
+
 }

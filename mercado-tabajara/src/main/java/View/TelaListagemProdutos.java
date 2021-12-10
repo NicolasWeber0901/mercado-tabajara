@@ -10,6 +10,7 @@ import Model.Mercado;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableRowSorter;
 
 /**
@@ -20,7 +21,7 @@ public class TelaListagemProdutos extends javax.swing.JFrame {
 
     //Modelo da tabela
     private TableModelProdutos tableModelProdutos;
-    
+
     //Organizador da tabela
     private TableRowSorter myTableSorter;
 
@@ -153,19 +154,28 @@ public class TelaListagemProdutos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFiltrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarProdutoActionPerformed
-
+        String searchText = tfPesquisar.getText();
         int filtro = cbFiltro.getSelectedIndex();
-        if (filtro == 0) {
-            String searchText = tfPesquisar.getText();
-            myTableSorter.setRowFilter(new MyRowFilter(searchText));
-        } else if (filtro == 1) {
-            String searchText = tfPesquisar.getText();
-            myTableSorter.setRowFilter(new MyRowFilterNome(searchText));
+        
+        try {
+            if (tfPesquisar.getText().equals("")) {
+                throw new IllegalArgumentException("Campo vazio");
+            }
+
+            if (filtro == 0) {
+                myTableSorter.setRowFilter(new MyRowFilter(searchText));
+            } else if (filtro == 1) {
+                myTableSorter.setRowFilter(new MyRowFilterNome(searchText));
+            }
+            
+        } catch (IllegalArgumentException e){
+            JOptionPane.showMessageDialog(this, "Digite algo para pesquisar!");
         }
+
     }//GEN-LAST:event_btnFiltrarProdutoActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-         if (tbProdutos.getSelectedRow() != -1) {
+        if (tbProdutos.getSelectedRow() != -1) {
             tableModelProdutos.removeRow(tbProdutos.getSelectedRow());
         }
     }//GEN-LAST:event_btExcluirActionPerformed
