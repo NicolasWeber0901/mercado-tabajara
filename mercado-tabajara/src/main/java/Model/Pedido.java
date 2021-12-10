@@ -28,6 +28,14 @@ public class Pedido {
         this.total = total;
     }
 
+    public double calculaTotal(){
+        for(Produto p : this.produtos){
+            this.total += p.getValor();
+        }
+        
+        return this.total;
+    }
+    
     private int geraCodigo(int geradorCodigo) {
         return ++this.geradorCodigo;
     }

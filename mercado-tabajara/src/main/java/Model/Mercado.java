@@ -6,7 +6,9 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -31,6 +33,7 @@ public class Mercado {
     private List<Cliente> clientes;
     private List<Funcionario> funcionarios;
     private List<Categoria> categorias;
+    private Set<Pedido> pedidos;
 
     //Adicionar a lista de pedidos.
     public Mercado(String nome, String telefone, String cnpj, Endereco endereco, Estoque estoque) {
@@ -42,6 +45,7 @@ public class Mercado {
         this.categorias = new ArrayList<>();
         this.clientes = new ArrayList<>();
         this.funcionarios = new ArrayList<>();
+        this.pedidos = new HashSet<>();
     }
 
     public String getNome() {
@@ -96,7 +100,9 @@ public class Mercado {
         return this.categorias;
     }
 
-    //Criar métodos de listagem de pedidos.
+    public Set<Pedido> getPedidos() {
+        return pedidos;
+    }
     
     public void listaCliente(){
         for(Cliente c : this.clientes){

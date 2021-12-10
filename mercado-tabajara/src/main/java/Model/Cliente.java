@@ -26,13 +26,21 @@ public class Cliente extends Pessoa{
     }
 
     public List<Pedido> getPedidos() {
-        return pedidos;
+        return this.pedidos;
     }
 
     public Set<Produto> getCarrinho() {
-        return carrinho;
+        return this.carrinho;
     }
 
+    public void addPedido(Pedido p){
+        this.pedidos.add(p);
+    }
+    
+    public void addCarrinho(Produto p){
+        this.carrinho.add(p);
+    }
+    
     @Override
     public String toString() {
         return "Cliente{" + super.toString() + '}';
