@@ -93,7 +93,7 @@ public class Mercado {
     }
 
     public List<Categoria> getCategorias() {
-        return categorias;
+        return this.categorias;
     }
 
     //Criar métodos de listagem de pedidos.
