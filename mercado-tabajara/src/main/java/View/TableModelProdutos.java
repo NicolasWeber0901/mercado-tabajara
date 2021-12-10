@@ -5,6 +5,7 @@
  */
 package View;
 
+
 import Model.Produto;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -16,7 +17,7 @@ import javax.swing.table.AbstractTableModel;
 public class TableModelProdutos extends AbstractTableModel {
 
     private List<Produto> produtos;
-
+    
     public TableModelProdutos(List<Produto> produtos) {
         this.produtos = produtos;
     }

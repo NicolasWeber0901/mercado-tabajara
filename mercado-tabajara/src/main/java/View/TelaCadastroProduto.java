@@ -17,14 +17,10 @@ import javax.swing.JOptionPane;
  */
 public class TelaCadastroProduto extends javax.swing.JFrame {
 
-    private List<Categoria> categorias;
-
     public TelaCadastroProduto() {
-
-        this.categorias = Mercado.getMercado().getCategorias();
-
+        
         initComponents();
-        for (Categoria cat : this.categorias) {
+        for (Categoria cat : Mercado.getMercado().getCategorias()) {
             cbCategoria.addItem(cat);
         }
     }
@@ -50,7 +46,7 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         taDesc = new javax.swing.JTextArea();
         jLabel14 = new javax.swing.JLabel();
         tfQtd = new javax.swing.JTextField();
-        btCadastrarCat = new javax.swing.JButton();
+        btCadastrarProd = new javax.swing.JButton();
         cbCategoria = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
@@ -71,10 +67,10 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
 
         jLabel14.setText("Quantidade");
 
-        btCadastrarCat.setText("Cadastrar");
-        btCadastrarCat.addActionListener(new java.awt.event.ActionListener() {
+        btCadastrarProd.setText("Cadastrar");
+        btCadastrarProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCadastrarCatActionPerformed(evt);
+                btCadastrarProdActionPerformed(evt);
             }
         });
 
@@ -86,7 +82,7 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(95, 95, 95)
-                .addComponent(btCadastrarCat)
+                .addComponent(btCadastrarProd)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -139,7 +135,7 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addComponent(btCadastrarCat)
+                .addComponent(btCadastrarProd)
                 .addContainerGap())
         );
 
@@ -148,8 +144,9 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 6, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,7 +163,7 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,7 +176,7 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btCadastrarCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarCatActionPerformed
+    private void btCadastrarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarProdActionPerformed
         String nome = tfNome1.getText();
         String desc = taDesc.getText();
         double valor = Integer.parseInt(tfValor.getText());
@@ -187,25 +184,25 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         Categoria cat = cbCategoria.getItemAt(cbCategoria.getSelectedIndex());
 
         Produto p1 = new Produto(nome, valor, desc, cat, qtd);
-        
+
         /* p1.getCodigo() passado após a criação do produto (método gerando 
         código automático) como chave para o Map. Após isso, passado o objeto
         em si como valor. 
         
-        Map = <Chave, valor>
-        */
+        Map = <chave, valor>
+         */
         Mercado.getMercado().getEstoque().addProduto(p1.getCodigo(), p1);
 
         JOptionPane.showMessageDialog(this, "Salvo com sucesso!");
         this.dispose();
-    }//GEN-LAST:event_btCadastrarCatActionPerformed
+    }//GEN-LAST:event_btCadastrarProdActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btCadastrarCat;
+    private javax.swing.JButton btCadastrarProd;
     private javax.swing.JComboBox<Categoria> cbCategoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;

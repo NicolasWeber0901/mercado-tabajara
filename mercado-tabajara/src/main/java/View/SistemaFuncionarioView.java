@@ -7,9 +7,6 @@ package View;
 
 import Model.Produto;
 import Model.Categoria;
-import Model.Cliente;
-import Model.Endereco;
-import Model.Funcionario;
 import Model.Mercado;
 
 /**
@@ -34,6 +31,7 @@ public class SistemaFuncionarioView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btCliente = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         miListarProdutos = new javax.swing.JMenuItem();
@@ -47,6 +45,14 @@ public class SistemaFuncionarioView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tela Inicial");
+
+        btCliente.setText("Cliente");
+        btCliente.setToolTipText("");
+        btCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btClienteActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Estoque");
 
@@ -109,11 +115,17 @@ public class SistemaFuncionarioView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(296, Short.MAX_VALUE)
+                .addComponent(btCliente)
+                .addGap(35, 35, 35))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(239, Short.MAX_VALUE)
+                .addComponent(btCliente)
+                .addContainerGap())
         );
 
         pack();
@@ -144,6 +156,11 @@ public class SistemaFuncionarioView extends javax.swing.JFrame {
         TelaListagemCliente telaListCliente = new TelaListagemCliente();
         telaListCliente.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void btClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClienteActionPerformed
+        SistemaClienteView sisClienteView = new SistemaClienteView();
+        sisClienteView.setVisible(true);
+    }//GEN-LAST:event_btClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,21 +201,41 @@ public class SistemaFuncionarioView extends javax.swing.JFrame {
         Categoria c1 = new Categoria("Alimento", "Pereciveis");
         Categoria c2 = new Categoria("Higiene", "Higiene pessoal");
         Categoria c3 = new Categoria ("Limpeza", "Produtos de limepza");
+        Categoria c4 = new Categoria ("Frios e lacticínios", "");
         
-        Produto p1 = new Produto("Arroz", 10.0, "Saco de 1KG", c1, 10);
-        Produto p2 = new Produto("Desodorante", 10.0, "Rexona", c2, 8);
-        Produto p3 = new Produto("Sabão", 10.0, "OMO 1KG", c3, 13);
+        mercado.getCategorias().add(c1);
+        mercado.getCategorias().add(c2);
+        mercado.getCategorias().add(c3);
+        mercado.getCategorias().add(c4);
+        
+        Produto p1 = new Produto("Arroz", 17.0, "1KG", c1, 10);
+        Produto p2 = new Produto("Desodorante", 8.0, "Rexona", c2, 8);
+        Produto p3 = new Produto("Sabão", 15.0, "OMO 1KG", c3, 13);
+        Produto p4 = new Produto("Leite Vida Longe", 3.75, "1L", c4, 50);
+        Produto p5 = new Produto("Margarina Qualidade", 13.50, "1KG", c4, 57);
+        Produto p6 = new Produto("Iogurte Charmanito", 3.75, "200ml", c4, 43);
+        Produto p7 = new Produto("Alcool Fogarel", 8.90, "1L", c3, 42);
+        Produto p8 = new Produto("Detergente IP", 2.50, "500ml", c3, 89);
+        Produto p9 = new Produto("Sabonete Donivea", 6.75, "1L", c2, 13);
+        Produto p10 = new Produto("Maçã Turma da Nomica", 5.75, "Preço por KG", c2, 12);
         
         mercado.getEstoque().addProduto(p1.getCodigo(), p1);
         mercado.getEstoque().addProduto(p2.getCodigo(), p2);
         mercado.getEstoque().addProduto(p3.getCodigo(), p3);
-        
-        Endereco e1 = new Endereco("Rua dos bobos", "Centro", "89140-000", 0); 
+        mercado.getEstoque().addProduto(p4.getCodigo(), p4);
+        mercado.getEstoque().addProduto(p5.getCodigo(), p5);
+        mercado.getEstoque().addProduto(p6.getCodigo(), p6);
+        mercado.getEstoque().addProduto(p7.getCodigo(), p7);
+        mercado.getEstoque().addProduto(p8.getCodigo(), p8);
+        mercado.getEstoque().addProduto(p9.getCodigo(), p9);
+        mercado.getEstoque().addProduto(p10.getCodigo(), p10);
+         
         
     }
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btCliente;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

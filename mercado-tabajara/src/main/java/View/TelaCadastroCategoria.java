@@ -9,7 +9,6 @@ import Model.Categoria;
 import Model.Mercado;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author edherpaullinelli
@@ -47,12 +46,6 @@ public class TelaCadastroCategoria extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Categoria"));
 
         jLabel3.setText("Nome");
-
-        tfNome1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfNome1ActionPerformed(evt);
-            }
-        });
 
         jLabel8.setText("Descrição");
 
@@ -142,25 +135,43 @@ public class TelaCadastroCategoria extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
         String nome = tfNome1.getText();
         String desc = tfDescricao.getText();
-        Categoria cat = new Categoria(nome, desc);
-        Mercado.getMercado().getCategorias().add(cat);
+
         
-        JOptionPane.showMessageDialog(this, "Salvo com sucesso!");
-        this.dispose();
+        /*
+        IllegalArgumentException é uma medida contra bad inputs, impedindo
+        que eles sejam passados para o restando do programa que irá utiliza-los
+        de fato. Por exemplo, construtor do cliente.
+        */
+        try {
 
+            if (nome.isEmpty() || desc.isEmpty()) {
+
+                throw new IllegalArgumentException("Campo vazio!");
+
+            }
+
+            Categoria cat = new Categoria(nome, desc);
+
+            Mercado.getMercado().getCategorias().add(cat);
+
+            System.out.println(Mercado.getMercado().getCategorias());
+
+            JOptionPane.showMessageDialog(this, "Salvo com sucesso!");
+            this.dispose();
+            
+        } catch (IllegalArgumentException e) {
+
+            JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
+
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void tfNome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNome1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfNome1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;

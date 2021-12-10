@@ -18,10 +18,14 @@ import javax.swing.table.TableRowSorter;
  */
 public class TelaListagemProdutos extends javax.swing.JFrame {
 
+    //Modelo da tabela
     private TableModelProdutos tableModelProdutos;
+    
+    //Organizador da tabela
     private TableRowSorter myTableSorter;
 
     public TelaListagemProdutos() {
+        //Conversão de map para ArrayList.
         Map<Integer, Produto> produtosMap = Mercado.getMercado().getEstoque().getProdutos();
         List<Produto> produtos = new ArrayList<Produto>(produtosMap.values());
         this.tableModelProdutos = new TableModelProdutos(produtos);
@@ -50,6 +54,8 @@ public class TelaListagemProdutos extends javax.swing.JFrame {
         tfPesquisar = new javax.swing.JTextField();
         btExcluir = new javax.swing.JButton();
         btEditar = new javax.swing.JButton();
+        btComparable = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Listagem Produtos");
@@ -60,11 +66,6 @@ public class TelaListagemProdutos extends javax.swing.JFrame {
         jLabel1.setText("Filtrar por:");
 
         cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Nome" }));
-        cbFiltro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbFiltroActionPerformed(evt);
-            }
-        });
 
         btnFiltrarProduto.setText("Pesquisar");
         btnFiltrarProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -82,14 +83,24 @@ public class TelaListagemProdutos extends javax.swing.JFrame {
 
         btEditar.setText("Editar");
 
+        btComparable.setText("Comparable (Preço)");
+        btComparable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btComparableActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Comparator (Nome)");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jLabel1)
@@ -100,12 +111,22 @@ public class TelaListagemProdutos extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnFiltrarProduto)
                 .addContainerGap(459, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btEditar)
-                .addGap(29, 29, 29)
-                .addComponent(btExcluir)
-                .addGap(31, 31, 31))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(btComparable)
+                        .addGap(36, 36, 36)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btEditar)
+                        .addGap(29, 29, 29)
+                        .addComponent(btExcluir)
+                        .addGap(31, 31, 31))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,7 +142,9 @@ public class TelaListagemProdutos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btExcluir)
-                    .addComponent(btEditar))
+                    .addComponent(btEditar)
+                    .addComponent(btComparable)
+                    .addComponent(jButton1))
                 .addGap(5, 5, 5))
         );
 
@@ -141,25 +164,33 @@ public class TelaListagemProdutos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnFiltrarProdutoActionPerformed
 
-    private void cbFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFiltroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbFiltroActionPerformed
-
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
          if (tbProdutos.getSelectedRow() != -1) {
             tableModelProdutos.removeRow(tbProdutos.getSelectedRow());
         }
     }//GEN-LAST:event_btExcluirActionPerformed
 
+    private void btComparableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComparableActionPerformed
+        TelaListagemProdutosComparable telaComparable = new TelaListagemProdutosComparable();
+        telaComparable.setVisible(true);
+    }//GEN-LAST:event_btComparableActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        TelaListagemProdutosComparator telaComparator = new TelaListagemProdutosComparator();
+        telaComparator.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btComparable;
     private javax.swing.JButton btEditar;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btnFiltrarProduto;
     private javax.swing.JComboBox<String> cbFiltro;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbProdutos;
