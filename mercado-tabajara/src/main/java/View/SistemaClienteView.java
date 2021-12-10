@@ -5,12 +5,14 @@
  */
 package View;
 
+import Model.Categoria;
+import Model.Cliente;
+import Model.Endereco;
 import Model.Mercado;
 import Model.Produto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 
 /**
  *
@@ -19,13 +21,32 @@ import java.util.Map;
 public class SistemaClienteView extends javax.swing.JFrame {
 
     private TableModelProdutos tableModelProdutos;
-    
+    private Cliente cliente;
+
     public SistemaClienteView() {
         Map<Integer, Produto> produtosMap = Mercado.getMercado().getEstoque().getProdutos();
         List<Produto> produtos = new ArrayList<Produto>(produtosMap.values());
         this.tableModelProdutos = new TableModelProdutos(produtos);
+
+        Endereco e1 = new Endereco("26 de Abril", "Centro", "89155-000", 42);
+        this.cliente = new Cliente("Camila", "895.647.826-57", "01/03/1996",
+                "987648378", e1, "camila", "123");
+
+        Categoria c4 = new Categoria ("Frios e lacticínios", "");
+        
+        Produto p1 = new Produto("Margarina Qualidade", 13.50, "1KG", c4, 57);
+        Produto p2 = new Produto("Iogurte Charmanito", 3.75, "200ml", c4, 43);
+        Produto p3 = new Produto("Leite Vida Longe", 3.75, "1L", c4, 50);
+        
+        this.cliente.addCarrinho(p1);
+        this.cliente.addCarrinho(p2);
+        this.cliente.addCarrinho(p3);
         
         initComponents();
+    }
+
+    public Cliente getCliente() {
+        return this.cliente;
     }
 
     /**
@@ -42,7 +63,7 @@ public class SistemaClienteView extends javax.swing.JFrame {
         btAddCarrinho = new javax.swing.JButton();
         btCarrinho = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tbProdutos.setModel(this.tableModelProdutos);
         jScrollPane1.setViewportView(tbProdutos);
@@ -50,6 +71,11 @@ public class SistemaClienteView extends javax.swing.JFrame {
         btAddCarrinho.setText("Adicionar ao Carrinho");
 
         btCarrinho.setText("Carrinho");
+        btCarrinho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCarrinhoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,6 +107,11 @@ public class SistemaClienteView extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCarrinhoActionPerformed
+        TelaCarrinho telaCarrinho = new TelaCarrinho();
+        telaCarrinho.setVisible(true);
+    }//GEN-LAST:event_btCarrinhoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAddCarrinho;

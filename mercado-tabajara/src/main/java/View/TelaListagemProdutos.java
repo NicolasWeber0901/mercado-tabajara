@@ -5,10 +5,12 @@
  */
 package View;
 
+import Model.ComparatorNomeProduto;
 import Model.Produto;
 import Model.Mercado;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableRowSorter;
@@ -19,6 +21,8 @@ import javax.swing.table.TableRowSorter;
  */
 public class TelaListagemProdutos extends javax.swing.JFrame {
 
+    private List<Produto> produtos;
+    
     //Modelo da tabela
     private TableModelProdutos tableModelProdutos;
 
@@ -28,7 +32,7 @@ public class TelaListagemProdutos extends javax.swing.JFrame {
     public TelaListagemProdutos() {
         //Conversão de map para ArrayList.
         Map<Integer, Produto> produtosMap = Mercado.getMercado().getEstoque().getProdutos();
-        List<Produto> produtos = new ArrayList<Produto>(produtosMap.values());
+        this.produtos = new ArrayList<Produto>(produtosMap.values());
         this.tableModelProdutos = new TableModelProdutos(produtos);
 
         initComponents();
@@ -156,7 +160,7 @@ public class TelaListagemProdutos extends javax.swing.JFrame {
     private void btnFiltrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarProdutoActionPerformed
         String searchText = tfPesquisar.getText();
         int filtro = cbFiltro.getSelectedIndex();
-        
+
         try {
             if (tfPesquisar.getText().equals("")) {
                 throw new IllegalArgumentException("Campo vazio");
@@ -167,8 +171,8 @@ public class TelaListagemProdutos extends javax.swing.JFrame {
             } else if (filtro == 1) {
                 myTableSorter.setRowFilter(new MyRowFilterNome(searchText));
             }
-            
-        } catch (IllegalArgumentException e){
+
+        } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(this, "Digite algo para pesquisar!");
         }
 
@@ -181,13 +185,17 @@ public class TelaListagemProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btComparableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComparableActionPerformed
-        TelaListagemProdutosComparable telaComparable = new TelaListagemProdutosComparable();
-        telaComparable.setVisible(true);
+
+        Collections.sort(produtos);
+        this.tableModelProdutos.refresh();
+
     }//GEN-LAST:event_btComparableActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        TelaListagemProdutosComparator telaComparator = new TelaListagemProdutosComparator();
-        telaComparator.setVisible(true);
+        
+        Collections.sort(produtos, new ComparatorNomeProduto());
+        this.tableModelProdutos.refresh();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
