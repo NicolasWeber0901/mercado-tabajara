@@ -9,7 +9,7 @@ package Model;
  *
  * @author Nicolas
  */
-public class Produto {
+public class Produto implements Comparable<Produto>{
 
     private static int geradorCodigo = 0;
 
@@ -76,7 +76,30 @@ public class Produto {
     public int geraCodigo(int cod) {
         return ++this.geradorCodigo;
     }
+    
+    public boolean descontar(int qtd) {
 
+        if (qtd > 0) {
+            this.qtd -= qtd;
+            return true;
+        }
+        return false;
+    }
+    
+    @Override
+    public int compareTo(Produto outro) {
+        if(this.valor < outro.getValor()){
+            return -1;
+        }
+        
+        if(this.valor > outro.getValor()){
+            return 1;
+        }
+        
+        return 0;
+        
+    }
+    
     public String toString() {
         return "nome=" + nome
                 + ", valor=" + valor + ", descricao=" + descricao
