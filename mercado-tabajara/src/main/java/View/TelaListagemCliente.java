@@ -64,11 +64,6 @@ public class TelaListagemCliente extends javax.swing.JFrame {
         jLabel1.setText("Filtrar por:");
 
         cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Nome" }));
-        cbFiltro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbFiltroActionPerformed(evt);
-            }
-        });
 
         btnFiltrarProduto.setText("Pesquisar");
         btnFiltrarProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -129,10 +124,6 @@ public class TelaListagemCliente extends javax.swing.JFrame {
             tableModelCliente.removeRow(tbCliente.getSelectedRow());
         }
     }//GEN-LAST:event_btExcluirActionPerformed
-
-    private void cbFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFiltroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbFiltroActionPerformed
 
     private void btnFiltrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarProdutoActionPerformed
 

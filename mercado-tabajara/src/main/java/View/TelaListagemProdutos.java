@@ -5,12 +5,12 @@
  */
 package View;
 
-import Model.ComparatorNomeProduto;
 import Model.Produto;
 import Model.Mercado;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableRowSorter;
@@ -22,7 +22,7 @@ import javax.swing.table.TableRowSorter;
 public class TelaListagemProdutos extends javax.swing.JFrame {
 
     private List<Produto> produtos;
-    
+
     //Modelo da tabela
     private TableModelProdutos tableModelProdutos;
 
@@ -60,7 +60,7 @@ public class TelaListagemProdutos extends javax.swing.JFrame {
         btExcluir = new javax.swing.JButton();
         btEditar = new javax.swing.JButton();
         btComparable = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Listagem Produtos");
@@ -95,10 +95,10 @@ public class TelaListagemProdutos extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Comparator (Nome)");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText("Comparator (Nome)");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -122,8 +122,8 @@ public class TelaListagemProdutos extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(btComparable)
-                        .addGap(36, 36, 36)
-                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btEditar)
                         .addGap(29, 29, 29)
@@ -149,7 +149,7 @@ public class TelaListagemProdutos extends javax.swing.JFrame {
                     .addComponent(btExcluir)
                     .addComponent(btEditar)
                     .addComponent(btComparable)
-                    .addComponent(jButton1))
+                    .addComponent(jButton2))
                 .addGap(5, 5, 5))
         );
 
@@ -191,12 +191,16 @@ public class TelaListagemProdutos extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btComparableActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        Collections.sort(produtos, new ComparatorNomeProduto());
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        Collections.sort(produtos, new Comparator<Produto>() {
+            public int compare(Produto p1, Produto p2) {
+                return p1.getNome().compareToIgnoreCase(p2.getNome());
+            }
+        });
+         
         this.tableModelProdutos.refresh();
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,7 +212,7 @@ public class TelaListagemProdutos extends javax.swing.JFrame {
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btnFiltrarProduto;
     private javax.swing.JComboBox<String> cbFiltro;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbProdutos;

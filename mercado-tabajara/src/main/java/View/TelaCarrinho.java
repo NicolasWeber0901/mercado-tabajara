@@ -5,19 +5,34 @@
  */
 package View;
 
+import Model.Cliente;
+import Model.Mercado;
+import Model.Pedido;
+import Model.Produto;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Nicolas
  */
 public class TelaCarrinho extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaCarrinho
-     */
-    public TelaCarrinho() {
+    private Cliente cliente;
+
+    public TelaCarrinho(Cliente cli) {
+        this.cliente = cli;
+
         initComponents();
-        
-        
+
+        for (Produto p : this.cliente.getCarrinho()) {
+            taCarrinho.append(p.toString());
+            taCarrinho.append("\n");
+            taCarrinho.append("\n");
+        }
+
+        String total = String.valueOf(this.cliente.calculaTotal());
+        jlTotal.setText("R$ " + total);
+
     }
 
     /**
@@ -29,25 +44,32 @@ public class TelaCarrinho extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbFormaPagamento = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jLable3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        taCarrinho = new javax.swing.JTextArea();
+        jlTotal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        cbFormaPagamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boleto", "Pix", "Crédito ", "Débito", "Dinheiro" }));
 
         jLabel1.setText("Forma de pagamento:");
 
         jButton1.setText("Finalizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setText("Total:");
+        jLable3.setText("Total:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        taCarrinho.setColumns(20);
+        taCarrinho.setRows(5);
+        jScrollPane2.setViewportView(taCarrinho);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -56,19 +78,21 @@ public class TelaCarrinho extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLable3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jlTotal)
+                                .addGap(26, 26, 26))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(cbFormaPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -81,10 +105,10 @@ public class TelaCarrinho extends javax.swing.JFrame {
                 .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                        .addComponent(jLable3)
+                        .addComponent(jlTotal))
+                    .addComponent(cbFormaPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -93,18 +117,43 @@ public class TelaCarrinho extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String formaPag = "";
+
+        if (cbFormaPagamento.getSelectedIndex() == 0) {
+            formaPag = "Boleto";
+        } else if (cbFormaPagamento.getSelectedIndex() == 1) {
+            formaPag = "Pix";
+        } else if (cbFormaPagamento.getSelectedIndex() == 2) {
+            formaPag = "Crédito";
+        } else if (cbFormaPagamento.getSelectedIndex() == 3) {
+            formaPag = "Débito";
+        } else if (cbFormaPagamento.getSelectedIndex() == 4) {
+            formaPag = "Dinheiro";
+        }
+
+        Pedido p = new Pedido(formaPag, this.cliente.calculaTotal());
+        p.setProdutos(this.cliente.getCarrinho());
+
+        Mercado.getMercado().getPedidos().add(p);
+
+        JOptionPane.showMessageDialog(this, "Pedido realizado com sucesso!");
+        this.dispose();
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbFormaPagamento;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLable3;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jlTotal;
+    private javax.swing.JTextArea taCarrinho;
     // End of variables declaration//GEN-END:variables
 }

@@ -109,7 +109,7 @@ public class SistemaClienteView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCarrinhoActionPerformed
-        TelaCarrinho telaCarrinho = new TelaCarrinho();
+        TelaCarrinho telaCarrinho = new TelaCarrinho(this.cliente);
         telaCarrinho.setVisible(true);
     }//GEN-LAST:event_btCarrinhoActionPerformed
 

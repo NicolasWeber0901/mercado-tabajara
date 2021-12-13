@@ -105,6 +105,11 @@ public class SistemaFuncionarioView extends javax.swing.JFrame {
         jMenu3.setText("Pedido");
 
         jMenuItem5.setText("Listar pedidos");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem5);
 
         jMenuBar1.add(jMenu3);
@@ -161,6 +166,11 @@ public class SistemaFuncionarioView extends javax.swing.JFrame {
         SistemaClienteView sisClienteView = new SistemaClienteView();
         sisClienteView.setVisible(true);
     }//GEN-LAST:event_btClienteActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        TelaListaPedidos telaPedidos = new TelaListaPedidos();
+        telaPedidos.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments
