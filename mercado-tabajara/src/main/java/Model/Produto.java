@@ -101,9 +101,8 @@ public class Produto implements Comparable<Produto>{
     }
     
     public String toString() {
-        return "nome=" + nome
-                + ", valor=" + valor + ", descricao=" + descricao
-                + ", categoria=" + categoria + ", qtd=" + qtd + '}';
+        return  nome
+                + ", R$ " + valor;
     }
 
 }

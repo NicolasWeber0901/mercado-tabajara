@@ -33,6 +33,15 @@ public class Cliente extends Pessoa{
         return this.carrinho;
     }
 
+    public double calculaTotal(){
+        double total = 0;
+        for(Produto p : this.carrinho){
+            total += p.getValor();
+        }
+        
+        return total;
+    }
+    
     public void addPedido(Pedido p){
         this.pedidos.add(p);
     }

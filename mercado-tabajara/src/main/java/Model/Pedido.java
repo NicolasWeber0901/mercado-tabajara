@@ -21,23 +21,19 @@ public class Pedido {
     private String formaPagamento;
     private double total;
 
-    public Pedido(Set<Produto> produtos, String formaPagamento, double total) {
+    public Pedido(String formaPagamento, double total) {
         this.codigo = geraCodigo(geradorCodigo);
         this.produtos = this.produtos = new HashSet<>();
         this.formaPagamento = formaPagamento;
         this.total = total;
     }
 
-    public double calculaTotal(){
-        for(Produto p : this.produtos){
-            this.total += p.getValor();
-        }
-        
-        return this.total;
-    }
-    
     private int geraCodigo(int geradorCodigo) {
         return ++this.geradorCodigo;
+    }
+
+    public void setProdutos(Set<Produto> produtos) {
+        this.produtos = produtos;
     }
 
     @Override
