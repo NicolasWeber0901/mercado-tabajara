@@ -179,9 +179,10 @@ public class TelaListagemProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFiltrarProdutoActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        if (tbProdutos.getSelectedRow() != -1) {
-            tableModelProdutos.removeRow(tbProdutos.getSelectedRow());
-        }
+        
+        int linha = tbProdutos.getSelectedRow();
+        tableModelProdutos.removeRow(linha);
+        
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btComparableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComparableActionPerformed

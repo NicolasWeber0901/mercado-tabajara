@@ -120,9 +120,8 @@ public class TelaListagemCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        if (tbCliente.getSelectedRow() != -1) {
-            tableModelCliente.removeRow(tbCliente.getSelectedRow());
-        }
+        int linha = tbCliente.getSelectedRow();
+        tableModelCliente.removeRow(linha);
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btnFiltrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarProdutoActionPerformed

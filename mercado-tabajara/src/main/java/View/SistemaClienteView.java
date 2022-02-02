@@ -38,9 +38,9 @@ public class SistemaClienteView extends javax.swing.JFrame {
         Produto p2 = new Produto("Iogurte Charmanito", 3.75, "200ml", c4, 43);
         Produto p3 = new Produto("Leite Vida Longe", 3.75, "1L", c4, 50);
         
-        this.cliente.addCarrinho(p1);
-        this.cliente.addCarrinho(p2);
-        this.cliente.addCarrinho(p3);
+        //this.cliente.addCarrinho(p1);
+        //this.cliente.addCarrinho(p2);
+        //this.cliente.addCarrinho(p3);
         
         initComponents();
     }
@@ -69,6 +69,11 @@ public class SistemaClienteView extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbProdutos);
 
         btAddCarrinho.setText("Adicionar ao Carrinho");
+        btAddCarrinho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAddCarrinhoActionPerformed(evt);
+            }
+        });
 
         btCarrinho.setText("Carrinho");
         btCarrinho.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +117,14 @@ public class SistemaClienteView extends javax.swing.JFrame {
         TelaCarrinho telaCarrinho = new TelaCarrinho(this.cliente);
         telaCarrinho.setVisible(true);
     }//GEN-LAST:event_btCarrinhoActionPerformed
+
+    private void btAddCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddCarrinhoActionPerformed
+        int linha = tbProdutos.getSelectedRow();
+        int coluna = tbProdutos.getSelectedColumn();
+        tbProdutos.getValueAt(linha, coluna);
+        
+        
+    }//GEN-LAST:event_btAddCarrinhoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAddCarrinho;
